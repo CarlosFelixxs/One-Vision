@@ -1,29 +1,7 @@
-# Compiled class file
-*.class
+node_modules
+package-lock.json
 
-# Log file
-*.log
+site/node_modules
+site/package-lock.json
 
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-
-.vscode
-
-node_modules/
-/looca-api-one-vision/looca-api-one-vision/target/
-/looca-api-one-vision/target/
+.github
