@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/pagcadastro.css">
+</head>
+
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="logo"><a href="index.html"><img src="assets/img/logoV1.png"></a></div>
+            <ul class="navbar">
+                <li><a href="index.html">Página inicial</a></li>
+                <li><a href="paglogin.html">Login</a></li>
+                <li class="active"><a href="pagcadastro.html">Cadastro</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="banner3">
+        <form id="form_cadastro" method="post" onsubmit="return cadastrar()" class="divCadastro">
+            <h3 class="tituloCadastro">Realize o cadastro de sua empresa</h3>
+            <span class="linha"></span>
+            <div class="banner3-1">
+                <div>
+                    <span>Nome da empresa:</span>
+                    <input name="nome" type="text" placeholder="Nome da empresa">
+                </div>
+                <div>
+                    <span>CNPJ:</span>
+                    <input name="cnpj" type="text" placeholder="CNPJ (Ex: 123456780001XX)">
+                </div>
+                <div>
+                    <span>CEP:</span>
+                    <input name="cep" type="text" placeholder="CEP (Ex: 12345678)">
+                </div>
+                <div class="banner3-2">
+                    <div>
+                        <span>Número:</span>
+                        <input name="numero" type="text" placeholder="(Ex: 123)" class="ipt-numero">
+                    </div>
+                    <div>
+                        <span>Complemento:</span>
+                        <input name="complemento" type="text" placeholder="(Ex: Casa1, Casa2)"
+                            class="ipt-complimento">
+                    </div>
+                </div>
+            </div>
+            <div class="banner3-3">
+                <div>
+                    <span>E-mail:</span>
+                    <input name="email" type="email" placeholder="Digite seu e-mail ">
+                </div>
+                <div>
+                    <span>Senha:</span>
+                    <input name="senha" type="password" placeholder="Digite sua senha">
+                </div>
+                <div>
+                    <span>Confirme sua senha:</span>
+                    <input name="confirmacao-senha" type="password" placeholder="Confirme sua senha">
+                </div>
+                <button>Criar Conta</button>
+                <div>
+                    <p class="possuiLogin">Já possuí cadastro? <a href="paglogin.html">Faça o login!</a></b>
+                </div>
+            </div>
+        </form>
+    </div>
+    </div>
+    <div class="altura"></div>
+    <div class="footer">
+        <p> ©2022 — One Vision — Todos os direitos reservados.</p>
+        <p>Entre em contato conosco: support@onevision.freshdesk.com</p>
+    </div>
+</body>
+
+</html>
+<script>
+    function cadastrar() {
+
+        var formulario = new URLSearchParams(new FormData(document.getElementById("form_cadastro")));
+
+        var nome = formulario.get("nome");
+        var cnpj = formulario.get("cnpj");
+        var cep = formulario.get("cep");
+        var numero = formulario.get("numero");
+        var email = formulario.get("email");
+        var senha = formulario.get("senha");
+        var confirmacaoSenha = formulario.get("confirmacao-senha");
+
+        // TODO: VERIFICAR AS VALIDAÇÕES QUE ELES ESTÃO APRENDENDO EM ALGORITMOS 
+        if (nome == "" || cnpj == "" || cep == "" || numero == "" || email == "" || senha == "" || confirmacaoSenha == "") {
+
+            window.alert("Preencha todos os campos para prosseguir!");
+            if (nome == "") {
+                console.log('nome está em branco')
+            }
+            if (cnpj == "") {
+                console.log('cnpj está em branco')
+            }
+            if (cep == "") {
+                console.log('cep está em branco')
+            }
+            if (numero == "") {
+                console.log('numero está em branco')
+            }
+            if (email == "") {
+                console.log('email está em branco')
+            }
+            if (senha == "") {
+                console.log('senha está em branco')
+            }
+            if (confirmacaoSenha == "") {
+                console.log('confirmacaoSenha está em branco')
+            }
+
+            return false;
+        }
+
+        if (email.indexOf("@") == -1 || email.indexOf(".com") == -1) {
+            window.alert("Ops, e-mail inválido! Verifique e tente novamente.");
+
+            return false;
+        }
+
+        if (senha != confirmacaoSenha) {
+            window.alert("As senhas inseridas devem ser iguais para prosseguir!");
+            return false;
+        }
+
+        fetch("/empresa/cadastrar", {
+            method: "POST",
+            body: formulario
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                window.alert("Cadastro realizado com sucesso!");
+                window.location = "paglogin.html";
+                limparFormulario();
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+        return false;
+    }
+</script>

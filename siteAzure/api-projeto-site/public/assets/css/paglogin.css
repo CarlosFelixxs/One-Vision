@@ -1,0 +1,127 @@
+.img-login {
+    display: flex;
+}
+
+.banner2 .divlogin div.banner2-1 {
+    align-items: center;
+    width: 250px;
+}
+
+.banner2 .divlogin {
+    background-color:white;
+    height: 65vh;
+    width: 36vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin: auto;
+    border-radius: 10px;
+    padding: 13px 0px;
+    text-decoration: none;
+}
+
+.tituloLogin {
+    text-align: center;
+    font-family: "Outfit", sans-serif;
+    font-weight: 500;
+    font-size: 1.5em;
+    color: #7931AD;
+    text-align: center;
+}
+
+.linha {
+    border-bottom-style: groove;
+    width: 65%;
+    padding-top: 2px;
+    margin-bottom: 14px;
+}
+
+.banner2 .divlogin select.combo {
+    display: flex;
+    width: 270px;
+    border-radius: 8px;
+    padding: 3px;
+    /*border: 2px solid #7931AD;*/
+    border-right: 0px;
+    border-top: 0px;
+    border: outset;
+
+}
+
+.banner2 .divlogin h2 {
+    color: #394347;
+}
+
+.banner2 .divlogin div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 8px;
+
+}
+
+
+.banner2 .divlogin div span {
+    color: #7931ad;
+    margin-bottom: 3px;
+}
+
+.banner2 .divlogin div input {
+    /* border: 2px solid #7931AD; */
+    border-radius: 10px;
+    padding: 8px;
+    border-right: 0px;
+    border-top: 0px;
+    width: 250px;
+    border: inset;
+}
+
+.banner2 .divlogin button {
+    background-color: #7931AD;
+    color: white;
+    border: none;
+    padding: 9px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 59%;
+    font-weight: bold;
+}
+
+.banner2 .divlogin div.banner2-2 {
+    align-items: center;
+}
+
+.divlogin div.banner2-2 h4 {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+
+}
+
+#buttonregistro {
+    color: #7931ad;
+    background-color: white;
+    border: 2px solid #7931AD;
+    width: 108px;
+    padding: 6px 0px;
+    margin-left: 19px;
+}
+
+.banner2 .divlogin button:hover {
+    background-color: #9702d0;
+    transition: 0.4s;
+}
+
+.button .divlogin button a {
+    text-decoration: none;
+}
+
+#buttonregistro:hover {
+    color: white;
+    border: 2px solid #7931AD;
+    text-decoration: none;
+    background-color: #7931ad;
+    transition: 0.5s;
+}

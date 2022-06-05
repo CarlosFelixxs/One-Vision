@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Início – Dashboard</title>
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+</head>
+
+<body style="overflow: auto">
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                  <li>
+                        <span class="titleImage"><img src="assets/img/logoV1.png"></span>
+                    </a>
+                    
+                </li>
+                <li>
+                    <a href="./dashboard.html">
+                        <span class="icon">
+                            <ion-icon name="home-outline"></ion-icon>
+                        </span>
+                        <span class="title">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./componentes.html">
+                        <span class="icon">
+                            <ion-icon name="bar-chart-outline"></ion-icon>
+                        </span>
+                        <span class="title">Selecione o que monitorar</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="help-circle-outline"></ion-icon>
+                        </span>
+                        <span class="title">Ajuda</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./index.html">
+                        <span class="icon">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                        </span>
+                        <span class="title">Sair</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- main -->
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+            </div>
+
+            <!-- infos -->
+            <div class="infoBox">
+                <div class="info">
+                    <div>
+                        <div class="welcome">Bem vindo, <span id="b_usuario"></span>!</div>
+                        <div class="infotext">Visualize informações sobre o desempenho de sua máquina:</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- cards -->
+            <div class="cardBox">
+                <a href="consultaHardware.html">
+                    <div class="card">
+                        <div>
+                            <div class="numbers">Consultar Hardware</div>
+                        </div>
+                        <div class="iconBox">
+                            <ion-icon name="hardware-chip-outline"></ion-icon>
+                        </div>
+                    </div>
+                </a>
+                <a href="consultaProgramas.html">
+                    <div class="card">
+                        <div>
+                            <div class="numbers">Programas em execução</div>
+                        </div>
+                        <div class="iconBox">
+                            <ion-icon name="cube-outline"></ion-icon>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+        
+        
+</body>
+
+</html>
+<script>
+    // menu toggle
+    let toggle = document.querySelector('.toggle');
+    let navigation = document.querySelector('.navigation');
+    let main = document.querySelector('.main');
+    
+
+    toggle.onclick = function () {
+        navigation.classList.toggle('active');
+        main.classList.toggle('active');
+    }
+
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO
+
+    fetch(`medidas/acessarIdMaquina/${sessionStorage.ID_USUARIO}`)
+        .then(res => res.json()).then(res =>{
+            console.log("Id da maquina " + res[0].idMaquina)
+            sessionStorage.ID_MAQUINA = res[0].idMaquina;
+    })
+
+    // fetch(`medidas/quantidadeProgramasRodando/${sessionStorage.ID_MAQUINA}`)
+    //         .then(res => res.json()).then(res =>{
+    //             document.getElementById("programasEmAndamento").innerHTML = res[0].qtdProgramas;
+    // })
+
+
+
+</script>

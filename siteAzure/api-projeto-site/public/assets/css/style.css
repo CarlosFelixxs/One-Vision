@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@494;500;708&display=swap');
+
+*{
+    margin:0px;
+    padding:0px;
+    font-family: "Outfit", sans-serif;
+
+}
+
+body {
+    background: url(https://media.istockphoto.com/vectors/bright-gradient-background-for-the-site-pink-orange-purple-vector-id1191721107?k=20&m=1191721107&s=170667a&w=0&h=GlcfavBgcHFuWo-cHLW6daySJVPiWgOvB8CHiAf_lkg=) center no-repeat fixed;
+    /*-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;*/
+    background-size: cover;
+}
+
+.header {
+    height: 12vh;
+    background: white;
+    /*background: linear-gradient(130deg, hsla(200, 100%, 36%, 0.219) 0%, rgba(235, 239, 245, 0.842) 20%, rgb(235, 239, 245, 0.842) 80%, rgba(0, 123, 184, 0.219) 100%);*/
+}
+
+.container {
+    height: 100%;
+    width: 80%;
+    margin: auto;
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .container img {
+    margin-top: -56px;
+    height: 164px;
+    width: 166px;
+}
+
+.logo {
+    height: 70px;
+    width: 80px;
+}
+
+.navbar {
+    display: flex;
+    list-style: none;
+    width: 50%;
+    justify-content: space-evenly;
+}
+
+.navbar li a:hover {
+    /* background-color: #007CB8;
+    color: white;*/
+    color: #f48517;
+    transition: 0.3s;
+
+}
+
+.navbar .active {
+    display: unset;
+
+}
+
+.navbar a {
+    position: relative;
+    color: #7931AD;
+    text-decoration: none;
+    font-weight: bolder;
+}
+
+.navbar a:after {
+    content: "";
+    position: absolute;
+    background-color: #9102DD;
+    height: 1px;
+    width: 0;
+    left: 0;
+    bottom: -3px;
+    transition: 0.3s;
+}
+
+.navbar a:hover:after {
+    width: 100%;
+    
+}
+
+.navbar li {
+    display: unset;
+}
+
+
+.footer {
+    background-color: rgb(0 123 184 / 22%);
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer p {
+    color: white;
+    margin-right: 30px;
+
+}
+
+.altura {
+    height: 10vh;
+}
+
+@media (max-width: 769px) {
+
+    /* responsicidade do header */
+    .header .container {
+        display: flex;
+        align-items: center;
+        /*flex-direction: column;*/
+    }
+
+    .navbar {
+        display: flex;
+        list-style: none;
+        width: 50%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    /* responsividade do banner */
+
+    .banner {
+        height: 70vh;
+        /* background-image: url(https://i.imgur.com/PLqQzbT.jpg); */
+        background-size: cover;
+        background-position: 0vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .banner .message {
+        width: 16%;
+        color: white;
+        font-size: 2.5rem;
+        font-weight: bolder;
+    }
+
+    /* responsividade mvv */
+    .proposito .container .mvv {
+        margin-top: 4.063rem;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    /* responsivo do ad */
+
+    .adCadastro {
+        height: 85vh;
+    }
+
+    .adCadastro .container {
+        display: flex;
+        justify-content: center !important;
+        align-items: center;
+    }
+
+    .experimentar {
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .imgExperimentar {
+        display: none;
+    }
+
+    .proposito .container .mvv .mvvBox {
+        border-bottom: 1px solid black;
+    }
+
+    .footer {
+        flex-direction: column;
+    }
+
+    .banner2 .divlogin {
+        width: 70vw !important;
+    }
+
+    .banner3 .divCadastro {
+        width: 70vw !important;
+    }
+}

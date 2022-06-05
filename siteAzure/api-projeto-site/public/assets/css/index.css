@@ -1,0 +1,269 @@
+.banner {
+    box-shadow: -7px 1px 6px 0px white;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner .bannerimg{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.banner .message {
+    color: white;
+    font-size: 2.5rem;
+    font-weight: bolder;
+}
+
+
+.containerindex {
+    padding-top: 5%;
+    height: 91vh;
+    width: 100%;
+    padding-bottom: 5%;
+}
+
+.containerproposito {
+    height: 100%;
+    width: 100%;
+}
+
+.containerindex .containerproposito{
+    width: 85%;
+    margin-left: 7%;
+    border-radius: 5px;
+    display: flex;
+    margin-top: 1%;
+    background-color: white;
+    height: 98%;
+    flex-direction: column !important;
+    align-items: center;
+}
+
+.containerproposito h2{
+    color: black;
+    padding-top: 4%;
+    padding-bottom: 2%;
+    font-size: xx-large;
+}
+
+.linha{
+    border-bottom-style: dashed;
+    width: 30%;
+    margin-bottom: 14px;
+}
+
+ .containerproposito .posicao{
+    width: 100%;
+    height: 60%;
+    display: flex;
+    padding-top: 5%;
+}
+
+.containerproposito .proposito {
+    width: 50%;
+    height: 75%;
+    text-align: -webkit-center;
+}
+
+
+.containerindex .containerproposito img{
+    height: 40%;
+}
+
+.containerindex .containerproposito h3 {
+    color: #7931ad;
+    font-weight: bolder;
+    font-size: x-large;
+    margin: 25px 0;
+}
+
+.containerindex .containerproposito p {
+    font-weight: bold;
+    font-size: 100%;
+    width: 80%;
+    height: 50%;
+}
+
+.footer {
+    background-color: rgb(0 123 184 / 22%);
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer p {
+    color: white;
+    margin-right: 30px;
+}
+
+/* cadastro */
+.containerAdCadastro {
+    background-color: white;
+    height: 86vh;
+    width: 100%;
+}
+
+.containerAdCadastro .containerCad {
+    display: flex;
+    width: 85%;
+    margin-left: 7%;
+    display: flex;
+    height: 100%;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+
+.imgExperimentar {
+    height: 50%;
+}
+
+.experimentar {
+    width: 41%;
+    height: 51%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1%;
+    box-shadow: 3px 3px 1px 1px #7931ad;
+}
+
+.experimentar h4 {
+    color: #7931ad;
+    line-height: 40px;
+    font-size: 25px;
+}
+
+.experimentar span {
+    padding: 0.938rem 2.125rem;
+    background-color:#7931ad;
+    border-radius: 20px;
+    color: white;
+    font-weight: bolder;
+    transition: 0.3s;
+}
+
+.experimentar span a {
+    text-decoration: none;
+    color: white;
+}
+
+.experimentar span:hover {
+    background-color: #9102dd;
+    box-shadow: 5px 2px 15px #7931ad;
+}
+
+
+@media (max-width: 769px) {
+
+    /* responsicidade do header */
+    .header .container {
+        display: flex;
+        align-items: center;
+        /*flex-direction: column;*/
+    }
+
+    .navbar {
+        display: flex;
+        list-style: none;
+        width: 50%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    /* responsividade do banner */
+
+    .banner {
+        height: 88vh;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .banner .message {
+        width: auto;
+        color: white;
+        font-size: 2.5rem;
+        font-weight: bolder;
+        text-align: center;
+    }
+
+    .containerindex{
+        height: auto;
+    }
+
+    .containerproposito{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .posicao{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    img {
+        width: 35%;
+    }
+    /* responsividade mvv */
+    .containerproposito .proposito {
+        padding-bottom: 10%;
+        border-bottom: black 1px solid;
+        
+    }
+
+    .containerproposito .proposito:nth-child(3n) {
+        border-bottom: none;
+    }
+
+    /* responsivo do ad */
+
+    .containerAdCadastro {
+        height: 85vh;
+    }
+
+    .containerAdCadastro .containerCad {
+        display: flex;
+        justify-content: center !important;
+        align-items: center;
+    }
+
+    .experimentar {
+        width: auto;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .imgExperimentar {
+        height: auto;
+    }
+
+    .proposito .container .mvv .mvvBox {
+        border-bottom: 1px solid black;
+    }
+
+    .footer {
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Início – Gerenciamento do Hardware</title>
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+</head>
+
+<body style="overflow: auto">
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                  <li>
+                        <span class="titleImage"><img src="assets/img/logoV1.png"></span>
+                    </a>
+                    
+                </li>
+                <li>
+                    <a href="./dashboard.html">
+                        <span class="icon">
+                            <ion-icon name="home-outline"></ion-icon>
+                        </span>
+                        <span class="title">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./componentes.html">
+                        <span class="icon">
+                            <ion-icon name="bar-chart-outline"></ion-icon>
+                        </span>
+                        <span class="title">Selecione o que monitorar</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./index.html">
+                        <span class="icon">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                        </span>
+                        <span class="title">Sair</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        
+
+        <!-- main -->
+        <div class="main">
+            <div class="top">
+                <div class="topbar">
+                    <div class="toggle">
+                        <ion-icon name="menu-outline"></ion-icon>
+                    </div>
+                </div>
+
+                <!-- infos -->
+                <div class="infoBox">
+                    <div class="info">
+                        <div>
+                            <div class="welcome">Bem-vindo(a) à área do Software!</div>
+                            <div class="infotext">Consulte os 10 programas que mais consomem a Memoria e CPU da sua maquina:</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="containerGraficos">
+                <div class="boxKpis">
+                    <div class="kpis" onclick="exibirRAM()">
+                        <h4>Consumo da RAM:</h4>
+                        <h1><span id="usoRAM"></span></h1>
+                        <h3><span id="avisoRAM"></span></h3>
+                    </div>
+                    <div class="kpis" onclick="exibirCPU()">
+                        <h4>Consumo da CPU:</h4>
+                        <h1><span id="usoCPU"></span></h1>
+                        <h3><span id="avisoCPU"></span></h3>
+                    </div>
+                </div>
+
+                <!-- gráficos -->
+                <div class="graphBox">
+        
+                    <div class="box" id="boxRAM">
+                        <div class="infotext">Consumo de RAM:</div>
+                        <canvas class="charts" id="myChartRAM"></canvas>
+                    </div>
+
+                    <div class="box" id="boxCPU">
+                        <div class="infotext">Consumo de CPU:</div>
+                        <canvas class="charts" id="myChartCPU">
+                    </div>
+                        
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>
+<script>
+
+    let RAMselected = false;
+    let CPUselected = false;
+
+    if (RAMselected == false) {
+        boxRAM.style.display = 'none';
+    }
+
+    if (CPUselected == false) {
+        boxCPU.style.display = 'none';
+    }
+
+    function exibirRAM(){
+        RAMselected = true;
+        boxRAM.style.display = 'block';
+        boxCPU.style.display = 'none';
+    }
+
+    function exibirCPU(){
+        CPUselected = true;
+        boxCPU.style.display = 'block';
+        boxRAM.style.display = 'none';
+    }
+
+    // menu toggle
+    let toggle = document.querySelector('.toggle');
+    let navigation = document.querySelector('.navigation');
+    let main = document.querySelector('.main');
+
+    toggle.onclick = function () {
+        navigation.classList.toggle('active');
+        main.classList.toggle('active');
+    }
+    
+    
+
+    //Bloco que pega os Ids do componenteMaquina do usuario
+    fetch(`/medidas/acessarIdComponenteMaquina/${sessionStorage.ID_MAQUINA}/Memoria`)
+        .then(res => res.json()).then(res =>{
+            sessionStorage.ID_MEMORIA = res[0].idComponenteMaquina;
+            exibirGraficoRAM();
+    })
+    fetch(`/medidas/acessarIdComponenteMaquina/${sessionStorage.ID_MAQUINA}/CPU`)
+        .then(res => res.json()).then(res =>{
+            sessionStorage.ID_CPU = res[0].idComponenteMaquina;
+    })
+    //Fim do Bloco que pega os Ids do componenteMaquina do usuario
+
+
+    //Blocoque lista o total dos componente
+    fetch(`/medidas/acessarTotalComponenteMaquina/${sessionStorage.ID_MAQUINA}/Memoria`)
+        .then(res => res.json()).then(res =>{
+            sessionStorage.TOTAL_MEMORIA = res[0].totalComponente;
+    })
+    fetch(`/medidas/acessarTotalComponenteMaquina/${sessionStorage.ID_MAQUINA}/CPU`)
+        .then(res => res.json()).then(res =>{
+            sessionStorage.TOTAL_CPU = res[0].totalComponente;
+    })
+    //Fim do bloco
+
+    //Bloco que lista o consumo dos componente
+    function listarConsumoComponentes(){
+
+        fetch(`/medidas/acessarConsumoComponente/${sessionStorage.ID_MEMORIA}`)
+        .then(res => res.json()).then(res =>{
+            let consumoMemoria = (res[0].consumo * 100) / sessionStorage.TOTAL_MEMORIA;
+            const idUsoMemoria = document.getElementById('usoRAM');
+            const idAvisoRAM = document.getElementById('avisoRAM');
+            idUsoMemoria.innerHTML = `${consumoMemoria.toFixed(1)}%`;
+                if (consumoMemoria < 50) {
+                    idUsoMemoria.style.color = "green";
+                    idAvisoRAM.innerText = `Memoria está Ok`;
+                }else if (consumoMemoria < 70) {
+                    idUsoMemoria.style.color = "yellow"
+                    idAvisoRAM.innerText = `Memoria está rázoavel`;
+                }else if (consumoMemoria < 90) {
+                    idUsoMemoria.style.color = "orange"
+                    idAvisoRAM.innerText = `Memoria está em alerta`;
+                }else if (consumoMemoria > 90) {
+                    idUsoMemoria.style.color = "red";
+                    idAvisoRAM.innerText = `Memoria está um caos`;
+                }
+        })
+
+        fetch(`/medidas/acessarConsumoComponente/${sessionStorage.ID_CPU}`)
+            .then(res => res.json()).then(res =>{
+                let consumoCPU = (res[0].consumo);
+                const idUsoCPU = document.getElementById('usoCPU');
+                const idAvisoCPU = document.getElementById('avisoCPU');
+                idUsoCPU.innerHTML = `${consumoCPU.toFixed(1)}%`;
+                if (consumoCPU < 50) {
+                    idUsoCPU.style.color = "green";
+                    idAvisoCPU.innerText = `CPU está Ok`;
+                }else if (consumoCPU < 70) {
+                    idUsoCPU.style.color = "yellow"
+                    idAvisoCPU.innerText = `CPU está rázoavel`;
+                }else if (consumoCPU < 80) {
+                    idUsoCPU.style.color = "orange"
+                    idAvisoCPU.innerText = `CPU está em alerta`;
+                }else if (consumoCPU > 90) {
+                    idUsoCPU.style.color = "red";
+                    idAvisoCPU.innerText = `CPU está um caos`;
+                }
+            })
+    }
+        //fim do bloco
+
+        // charts
+        const ctxCPU = document.getElementById('myChartCPU').getContext('2d');
+        const ctxRAM = document.getElementById('myChartRAM').getContext('2d');
+
+        var configuration = {
+            type: 'bar',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: "",
+                    data: [],
+                    backgroundColor: '#ff7f7f',
+                    tension: 0.1,
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                    },
+                },  
+                scales: {
+                    xAxes: [{
+                        distribution: 'series',
+                        ticks: {
+                            beginAtZero: false
+                        }
+                    }],
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                        },
+                        ticks: {
+                            beginAtZero: false,
+                        }
+                    }]
+                },
+                animation: {
+                    duration: 0,
+                },
+                
+            }
+        };
+
+        var configurationCPU = {
+            type: 'bar',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: "",
+                    data: [],
+                    backgroundColor: '#ff7f7f',
+                    tension: 0.1,
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                    },
+                },  
+                scales: {
+                    xAxes: [{
+                        distribution: 'series',
+                        ticks: {
+                            beginAtZero: false
+                        }
+                    }],
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                        },
+                        ticks: {
+                            beginAtZero: false,
+                        }
+                    }]
+                },
+                animation: {
+                    duration: 0,
+                },
+                
+            }
+        };
+
+        var chartRAM = new Chart(ctxRAM, configuration);
+        var chartCPU = new Chart(ctxCPU, configurationCPU);
+        let contador = 0;
+
+        
+    async function exibirGraficoRAM(){
+        console.log('iniciando plotagem do gráfico de RAM...');
+        contador = 0;
+        let registroProgramasRAM = await fetch(`/medidas/acessarProgramasConsumoMemoria/${sessionStorage.ID_MAQUINA}`);
+        registroProgramasRAM = await registroProgramasRAM.json();
+
+        console.log(registroProgramasRAM);
+        
+        console.log(contador);
+
+        registroProgramasRAM.reverse();
+
+        registroProgramasRAM.forEach(data => {
+            if (chartRAM.data.labels.length >= 10) {
+                chartRAM.data.labels.shift()
+                chartRAM.data.datasets[0].data.shift();
+            }
+
+            chartRAM.data.labels.push(data.nomePrograma);
+            chartRAM.data.datasets[0].data.push(parseFloat(data.consumoMemoria));
+
+            chartRAM.update();
+            contador++;
+        });
+    }
+
+
+    async function exibirGraficoCPU(){
+        console.log('iniciando plotagem do gráfico de CPU...');
+        let registroProgramaCPU = await fetch(`/medidas/acessarProgramasConsumoCPU/${sessionStorage.ID_MAQUINA}`);
+        let registroCPU = await registroProgramaCPU.json();
+
+        contador = 0;
+        
+        console.log("teste "+registroCPU);
+
+        registroCPU.reverse();
+
+        registroCPU.forEach(data => {
+            if (chartCPU.data.labels.length >= 10) {
+                chartCPU.data.labels.shift()
+                chartCPU.data.datasets[0].data.shift();
+            }
+            chartCPU.data.labels.push(data.nomePrograma);
+            chartCPU.data.datasets[0].data.push(parseFloat(data.consumoCPU));
+
+            chartCPU.update();
+            contador++;
+
+        });
+    };
+
+
+
+    setInterval(() => {
+        listarConsumoComponentes();
+
+        exibirGraficoRAM();
+
+        exibirGraficoCPU();
+
+    }, 5000);
+</script>

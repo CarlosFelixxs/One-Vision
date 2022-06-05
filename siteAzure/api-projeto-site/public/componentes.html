@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Componentes – Dashboard</title>
+    <link rel="stylesheet" href="assets/css/componentes.css">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+
+</head>
+
+<body style="overflow: auto">
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                <li>
+                    <span class="titleImage"><img src="assets/img/logoV1.png"></span>
+                    </a>
+
+                </li>
+                <li>
+                    <a href="./dashboard.html">
+                        <span class="icon">
+                            <ion-icon name="home-outline"></ion-icon>
+                        </span>
+                        <span class="title">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="bar-chart-outline"></ion-icon>
+                        </span>
+                        <span class="title">Selecione o que monitorar</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="help-circle-outline"></ion-icon>
+                        </span>
+                        <span class="title">Ajuda</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./index.html">
+                        <span class="icon">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                        </span>
+                        <span class="title">Sair</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- main -->
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+            </div>
+
+            <!-- Checbox - selecionar componentes-->
+            <div class="bannerComp">
+                <form id="form_cadcomponentes" method="post" onsubmit=" return componentes()" class="divComponentes">
+                    <h3 class="tituloComp">Selecione os componentes que deseja monitorar:</h3>
+                    <span class="linhaComp"></span>
+                    <div class="box">
+                        <span class="selecionar">
+                            <input id="bto" type="button" name="botao" onclick="verificar(this)" value="&#9745"></br>
+                            <h5>Selecionar todos</h5>
+                        </span>
+                        <input type="checkbox" name="componentes[]" id="componente01" value="ram">
+                        <label for="componente01">Memória RAM</label><br>
+
+                        <input type="checkbox" name="componentes[]" id="componente02" value="ram">
+                        <label for="componente02">Processador</label><br>
+
+                        <input type="checkbox" name="componentes[]" id="componente03" value="ram">
+                        <label for="componente03">Disco</label><br>
+
+                        <input type="checkbox" name="componentes[]" id="componente04" value="ram">
+                        <label for="componente04">GPU</label><br>
+                    </div>
+
+                    <button>Salvar</button>
+                </form>
+            </div>
+</body>
+
+</html>
+<script>
+    // menu toggle
+    let toggle = document.querySelector('.toggle');
+    let navigation = document.querySelector('.navigation');
+    let main = document.querySelector('.main');
+
+
+    toggle.onclick = function () {
+        navigation.classList.toggle('active');
+        main.classList.toggle('active');
+    }
+</script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+<script>
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO
+
+    //função para verificar estado de checkbox e estilizar botão
+    function verificar(box) {
+        var opc = document.getElementById("bto");
+        if (box.form.botao.checked == 0) {
+            box.form.botao.checked = 1;
+            opc.style.opacity = .5;
+            marcar(box);
+
+        } else {
+            box.form.botao.checked = 0;
+            opc.style.opacity = 1;
+            desmarcar(box);
+        }
+    }
+
+    //função para marcar todos os checkbox
+    function marcar(box) {
+        for (let i = 0; i < box.form.elements.length; i++) {
+            if (box.form.elements[i].type == "checkbox") {
+                box.form.elements[i].checked = 1;
+            }
+
+
+        }
+    }
+
+    //função para desmarcar todos os checkbox
+    function desmarcar(box) {
+        for (let i = 0; i < box.form.elements.length; i++) {
+            if (box.form.elements[i].type == "checkbox") {
+                box.form.elements[i].checked = 0;
+            }
+
+
+        }
+    }
+</script>

@@ -1,0 +1,9 @@
+{
+  "name": "siteAzure",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node ./sprint-2/siteAzure/api-projeto-site/app.js",
+    "postinstall": "cd sprint-2/siteAzure/api-projeto-site && npm install"
+  }
+}

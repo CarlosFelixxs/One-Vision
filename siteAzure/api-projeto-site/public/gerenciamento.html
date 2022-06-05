@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Início – Gerenciamento</title>
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+</head>
+
+<body style="overflow: auto">
+    <div class="blackEmpresa" id="blackEmpresa">
+
+        <div class="popupEmpresa" id="popupEmpresa">
+            <ion-icon name="close-outline" class="close-btn" onclick="fecharModalEmpresa()"></ion-icon>
+
+            <h2>Atualize suas informações</h2>
+            <form id="formUpdateEmpresa" class="form" method="post" onsubmit="return updateEmpresa()">
+               
+                <div class="content-form-element">
+                    <div class="grupo-form-element">
+                        <div class="form-element" id="comboBox">
+                            <label for="select">Selecione o campo</label>
+                            <select name="campoSelecionado" id="campoSelect">
+                                <option value=""></option>
+                                <option value="nome">Razão Social</option>
+                                <option value="email">Email</option>
+                                <option value="senha">Senha</option>
+                                <option value="cnpj">CNPJ</option>
+                                <option value="cep">CEP</option>
+                                <option value="numero">Número</option>
+                                <option value="complemento">Complemento</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-element" id="novoValorElement" >
+                            <label for="novoValor">Digite o novo dado:</label>
+                            <input type="text" id="novoValor" name="" placeholder="Novo dado...">
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="grupo-form-element">
+                        <div class="form-element"  id="senhaElement">
+                            <label for="confirmacao">Digite a sua senha:</label>
+                            <input type="password" id="confirmaSenhaEmpresa" placeholder="senha...">
+                        </div>
+
+                        <div class="form-element" >
+                            <input type="submit" value="Atualizar"></input>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                <li>
+
+                    <span class="titleImage"><img src="assets/img/logoV1.png"></span>
+                    
+                </li>
+                <li>
+                    <a href="./gerenciamento.html">
+                        <span class="icon">
+                            <ion-icon name="home-outline"></ion-icon>
+                        </span>
+                        <span class="title">Inicio</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./pagcadfuncionario.html">
+                        <span class="icon">
+                            <ion-icon name="person-add-outline"></ion-icon>
+                        </span>
+                        <span class="title">Funcionários</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" onclick="abrirModalUpdate()">
+                        <span class="icon">
+                            <ion-icon name="reload-circle-outline"></ion-icon>
+                        </span>
+                        <span class="title">Atualizar dados da Empresa</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./index.html">
+                        <span class="icon">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                        </span>
+                        <span class="title">Sair</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- main -->
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+            </div>
+
+            <!-- infos -->
+            <div class="infoBox">
+                <div class="info">
+                    <div>
+                        <div class="welcome">Bem-vindo(a) à área de gerenciamento!</div>
+                        <div class="infotext">Gerencie os processos disponibilizados para sua empresa:</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- cards -->
+            <div class="cardBox">
+                <div class="card">
+                    <div>
+                        <a href="./painelMaquinas.html">
+                            <div class="numbers"> Máquinas da sua empresa</div>
+                        </a>
+                    </div>
+                    <div class="iconBox">
+                        <ion-icon name="laptop-outline"></ion-icon>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div>
+                        <div class="numbers" id="funcionariosCadastrados">0</div>
+                        <div class="cardfunc">Funcionários cadastrados:</div>
+                    </div>
+                    <div class="iconBox">
+                        <ion-icon name="people-outline"></ion-icon>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <div class="numbers"><a href="./pagcadfuncionario.html">Cadastre um funcionário</a></div>
+
+                    </div>
+                    <div class="iconBox">
+                        <ion-icon name="person-add-outline"></ion-icon>
+                    </div>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="numbers">Contate o suporte</div>
+
+                    </div>
+                    <div class="iconBox">
+                        <ion-icon name="git-network-outline"></ion-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+</body>
+
+</html>
+<script>
+
+    // menu toggle
+    let toggle = document.querySelector('.toggle');
+    let navigation = document.querySelector('.navigation');
+    let main = document.querySelector('.main');
+
+    toggle.onclick = function () {
+        navigation.classList.toggle('active');
+        main.classList.toggle('active');
+    }
+
+    fetch(`empresa/listar/${sessionStorage.ID_EMPRESA}`)
+            .then(res => res.json()).then(res =>{
+                console.log(res[0].contagem);
+                document.getElementById("funcionariosCadastrados").innerHTML = res[0].contagem;
+    })
+
+    function abrirModalUpdate(){
+        document.getElementById("popupEmpresa").classList.add("active");
+        document.getElementById("blackEmpresa").classList.add("active-black-Empresa")
+    }
+
+    function fecharModalEmpresa(){
+        document.getElementById("popupEmpresa").classList.remove("active");
+        document.getElementById("blackEmpresa").classList.remove("active-black-Empresa");
+    }
+
+
+    function updateEmpresa() {
+
+        const formulario = new URLSearchParams(new FormData(document.getElementById("formUpdateEmpresa")));
+
+        const campoSelecionado = document.getElementById("campoSelect");
+        const novoDado = document.getElementById("novoValor");
+        let senha = document.getElementById('confirmaSenhaEmpresa').value;
+
+        if (campoSelecionado.value == "" || novoDado.value == "") {
+            window.alert('Preencha todos os campos');
+            return false;
+        }
+
+        if (senha == sessionStorage.SENHA_EMPRESA) {
+            senha.value = "";
+            
+        }else{
+            window.alert("Senha incorreta");
+            senha.value = "";
+            return false;
+        }
+
+        fetch(`/empresa/atualizarEmpresa/${sessionStorage.ID_EMPRESA}`, {
+            method: "POST",
+            body: formulario
+        }).then(function(resposta) {
+                if (resposta.ok) {
+
+                    window.alert('Empresa atualizada com sucesso');
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1000);
+
+                } else {
+                console.log(resposta);
+
+                throw("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function(resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+        return false;
+    }
+
+</script>

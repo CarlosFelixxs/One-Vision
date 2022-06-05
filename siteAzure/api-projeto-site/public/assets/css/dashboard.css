@@ -1,0 +1,728 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@494;500;708&display=swap');
+
+*{
+    margin:0px;
+    padding:0px;
+    font-family: "Outfit", sans-serif;
+    box-sizing: border-box;
+}
+body{
+    background: url(https://media.istockphoto.com/vectors/bright-gradient-background-for-the-site-pink-orange-purple-vector-id1191721107?k=20&m=1191721107&s=170667a&w=0&h=GlcfavBgcHFuWo-cHLW6daySJVPiWgOvB8CHiAf_lkg=) center center no-repeat fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.container{
+position: relative;
+width: 100%;
+}
+.navigation{
+position: fixed;
+width: 300px;
+height: 100%;
+background: #FFFF;
+border-left: 10px solid #FFF;
+transition: 0.5s;
+overflow: hidden;
+}
+
+.navigation.active{
+    width: 80px;
+}
+
+
+.navigation ul{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+.navigation ul li{
+    position: relative;
+    width: 200%;
+    list-style: none;
+}
+.navigation ul li :hover{
+    background: #7931AD;
+}
+.navigation ul li:nth-child(1){
+    margin-bottom: 40px;
+    pointer-events: none;
+}
+.navigation ul li a{
+    position: relative;
+    display: block;
+    width: 100%;
+    display: flex;
+    text-decoration: none;
+    color: #7931AD;
+}
+.navigation ul li:hover a{
+    color: #FFF;
+    border-radius: 30px;
+}
+.navigation ul li a .icon{
+    position: relative;
+    display: block;
+    min-width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    font-size: 130%;
+}
+
+.navigation ul li:hover .icon{
+    color: #FFF;
+    border-radius: 30px;
+}
+.navigation ul li a .icon ion-icon{
+    font-size: 2.5rm;
+}
+.navigation ul li a .title{
+    position: relative;
+    display: block;
+    padding: 0 10px;
+    height: 60px;
+    text-align: start;
+    line-height: 60px;
+    white-space: nowrap;
+}
+
+.navigation ul li .titleImage img{
+    position: relative;
+    display: block;
+    margin-left: 35px;
+    height: 200px;
+    
+}
+
+/* main */
+.main{
+    position: absolute;
+    width: calc(100% - 300px);
+    left: 300px;
+    min-height: 100vh;
+    transition: 0.5s;
+}
+
+.main.active{
+    width: calc(100% - 80px);
+    left: 80px;
+}
+
+.top{
+    display: flex;
+}
+
+
+.topbar{
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.toggle{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    background: white;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+
+.cardBox{
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(2,2fr);
+    grid-gap: 30px;
+}
+
+.cardBox .card{
+    position: relative;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08) ;
+}
+
+.cardBox .card .numbers{
+    position: relative;
+    font-weight: 500;
+    font-size: 1.5em;
+    color: #7931AD;
+}
+
+.cardBox a{
+    text-decoration: none;
+}
+
+
+.cardBox .card .cardName{
+    color: black;
+    font-size: 1.1em;
+    margin-top: 5px;
+}
+
+.cardBox .card .iconBox{
+    font-size: 2.5em;
+    color: black;
+}
+/* cards das maquinas */
+
+.cardBoxMaquina{
+    width: 90%;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.cardMaquina{
+    width: 30%;
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    cursor: pointer;
+    padding: 3%;
+    margin: 5px;
+    border-radius: 20px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+}
+
+.cardMaquina .numbers{
+    position: relative;
+    font-weight: 500;
+    font-size: 1.5em;
+    color: #7931AD;
+}
+
+.cardMaquina .numbers a{
+    position: relative;
+    font-weight: 500;
+    font-size: 1em;
+    color: #7931AD;
+    text-decoration: none;
+}
+
+
+.cardMaquina .cardName{
+    color: black;
+    font-size: 1.1em;
+    margin-top: 5px;
+}
+
+.cardMaquina .iconBox{
+    font-size: 2.5em;
+    color: black;
+}
+
+/* KPI's */
+
+.boxKpis{
+    height: 20vh;
+    width: 100%;
+    display: flex;
+    padding: 0 4%;
+    justify-content: space-between;
+}
+
+.kpis{
+    cursor: pointer;
+    background-color: white;
+    height: 100%;
+    width: 20%;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    color: black;
+    padding-top: 10px;
+    border: black 3px solid;
+}
+
+.kpis h1{
+    font-size: 4rem;
+}
+
+.kpis h3{
+    font-size: 0.9rem;
+}
+
+
+/* infos */
+.infoBox{
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.infoBox .info{
+    width: 90%;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08) ;
+}
+
+.infoBox .info .welcome{
+    position: relative;
+    font-weight: 500;
+    font-size: 2.5em;
+    color: #7931AD;
+}
+
+.infoBox .info .infotext{
+    color: black;
+    font-size: 1.1em;
+    margin-top: 5px;
+}
+
+/* charts */
+
+.graphBox{
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    justify-items: center;
+    
+}
+
+.graphBox .box{
+    background-color: white;
+    padding: 20px;
+    width: 70vw;
+    height: 50vh;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+    border: black 5px solid;
+}
+
+.graphBox .charts{
+    position: relative;
+    background-color: white;
+    padding: 20px;
+    width: 90%;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+    color: #FF1900;
+}
+
+#trashIcon:hover{
+    color: #FF1900;
+}
+
+.popup{
+    position: absolute;
+    display: none;
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.25);
+    width: 50vw;
+    padding: 20px 30px;
+    background-color: #FFF;
+    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+}
+.popup.active{
+    display: block;
+    opacity: 1;
+}
+
+.black{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: top 0ms ease-in-out 0ms,
+                opacity 200ms ease-in-out 0ms,
+                transform 200ms ease-in-out 0ms;
+    z-index: 3;
+}
+
+.active-black {
+    visibility: visible;
+    opacity: 1;
+    transition: top 0ms ease-out 0ms,
+                opacity 200ms ease-out 0ms,
+                transform 200ms ease-out 0ms;
+}
+.popup .close-btn{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 0.938rem;
+    height: 0.938rem;
+    background-color: #888;
+    color: #eee;
+    text-align: center;
+    line-height: 0.938rem;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.popup .form h2{
+    text-align: center;
+    color: #222;
+    margin: 0.625rem 0px 1.25rem;
+    font-size: 1.563rem;
+}
+
+.popup .form .content-form-element{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.popup .form .content-form-element .form-element{
+    margin: 0.938rem 0px;
+}
+
+.popup .form .content-form-element .form-element label{
+    font-size: 0.875rem;
+}
+
+.popup .form .content-form-element .form-element  input[type="password"]{
+    padding: 10px;
+    outline: none;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+}
+
+.popup .form .content-form-element .form-element input[type="submit"]{
+    border: 1px #f5f5f5 solid;
+    outline: none;
+    padding: 10px;
+    font-size: 0.938rem;
+    background-color: #FF1900;
+    color: #f5f5f5;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.popup .form .content-form-element .form-element input[type="submit"]:hover{
+    color: #FF1900;
+    background-color: #f5f5f5;
+    border: 1px #222 solid;
+}
+
+.popupUser{
+    position: absolute;
+    display: none;
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.25);
+    width: 50vw;
+    padding: 20px 30px;
+    background-color: #FFF;
+    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+}
+
+.popupUser.active{
+    display: block;
+    opacity: 1;
+}
+
+.blackUser{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: top 0ms ease-in-out 0ms,
+                opacity 200ms ease-in-out 0ms,
+                transform 200ms ease-in-out 0ms;
+    z-index: 3;
+}
+
+.active-black-user {
+    visibility: visible;
+    opacity: 1;
+    transition: top 0ms ease-out 0ms,
+                opacity 200ms ease-out 0ms,
+                transform 200ms ease-out 0ms;
+}
+
+.popupUser .close-btn{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 0.938rem;
+    height: 0.938rem;
+    background-color: #888;
+    color: #eee;
+    text-align: center;
+    line-height: 0.938rem;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.popupUser .form h2{
+    text-align: center;
+    color: #222;
+    margin: 0.625rem 0px 1.25rem;
+    font-size: 1.563rem;
+}
+
+.popupUser .form .content-form-element{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.popupUser .form .content-form-element .form-element{
+    margin: 0.938rem 0px;
+}
+
+.popupUser .form .content-form-element .form-element label{
+    font-size: 0.875rem;
+}
+
+.popupUser .form .content-form-element .form-element  input[type="password"]{
+    padding: 10px;
+    outline: none;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+}
+
+.popupUser .form .content-form-element .form-element input[type="submit"]{
+    border: 1px #f5f5f5 solid;
+    outline: none;
+    padding: 10px;
+    font-size: 0.938rem;
+    background-color: #FF1900;
+    color: #f5f5f5;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.popupUser .form .content-form-element .form-element input[type="submit"]:hover{
+    color: #FF1900;
+    background-color: #f5f5f5;
+    border: 1px #222 solid;
+}
+
+.popupEmpresa{
+    position: absolute;
+    display: none;
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.25);
+    width: 50vw;
+    padding: 20px 30px;
+    background-color: #FFF;
+    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+}
+
+.popupEmpresa.active{
+    display: block;
+    opacity: 1;
+}
+
+.blackEmpresa{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: top 0ms ease-in-out 0ms,
+                opacity 200ms ease-in-out 0ms,
+                transform 200ms ease-in-out 0ms;
+    z-index: 3;
+}
+
+.active-black-Empresa {
+    visibility: visible;
+    opacity: 1;
+    transition: top 0ms ease-out 0ms,
+                opacity 200ms ease-out 0ms,
+                transform 200ms ease-out 0ms;
+}
+
+.popupEmpresa .close-btn{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 0.938rem;
+    height: 0.938rem;
+    background-color: #888;
+    color: #eee;
+    text-align: center;
+    line-height: 0.938rem;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.popupEmpresa h2{
+    text-align: center;
+    color: #222;
+    margin: 0.625rem 0px 1.25rem;
+    font-size: 1.563rem;
+}
+
+.content-form-element{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.grupo-form-element{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.divider{
+    height: 1px;
+    width: 100%;
+    background-color: #888;
+}
+ .form-element{
+    margin: 0.938rem 0px;
+}
+
+ .form-element label{
+    font-size: 0.875rem;
+}
+
+ .form-element  input[type="password"],
+ .form-element  input[type="text"]{
+    padding: 10px;
+    outline: none;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+}
+
+ .form-element  select{
+    padding: 10px;
+    outline: none;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+}
+
+ .form-element  option{
+    padding: 2px;
+    color: #222;
+    font-size: 0.9rem;
+}
+
+ .form-element input[type="submit"]{
+    border: 1px #f5f5f5 solid;
+    outline: none;
+    padding: 10px;
+    font-size: 0.938rem;
+    background-color: #7931ad;
+    color: #f5f5f5;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+ .form-element button{
+    border: 1px #f5f5f5 solid;
+    outline: none;
+    padding: 10px;
+    font-size: 0.938rem;
+    background-color: #f48517;
+    color: #f5f5f5;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+ .form-element button:hover{
+    color: #f48517;
+    background-color: #f5f5f5;
+    border: 1px #222 solid;
+}
+
+ .form-element input[type="submit"]:hover{
+    color: #7931ad;
+    background-color: #f5f5f5;
+    border: 1px #222 solid;
+}
+/* responsividade: 
+@media (max-width: 991px) {
+    .navigation{
+        left: -300px;
+    }
+    .navigation.main.active{
+        left: 300px;
+    }
+    .main{
+        width: 100%;
+        left: 0;
+    }
+    .main.main.active{
+        left: 300px;
+    }
+    .cardBox{
+        grid-template-columns: repeat(2,1fr);
+    }
+    .graphBox{
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+}
+@media (max-width: 480px){
+    .cardBox{
+        grid-template-columns: repeat(1,1fr);
+    }
+    .navigation{
+        width: 100%;
+        left: -100%;
+    }
+    .navigation.active{
+        width: 100%;
+        left: 0;
+    }
+    .toggle{
+        z-index: 10001;
+    }
+    .main.active .toggle{
+        position: fixed;
+        right: 0;
+        left: initial;
+        color: white;
+    }
+} */

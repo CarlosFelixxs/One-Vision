@@ -1,0 +1,202 @@
+
+.header-left div.logoDash img {
+    margin-left: 4px;
+    margin-top: -70px; 
+    height: 245px;
+    width: 236px;
+}
+
+.header-left {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    z-index: 999;
+
+    height: 100vh;
+
+    width: 18%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-evenly;
+
+    align-items: center;
+
+    border-right: 1px solid #ffffff;
+
+    background: rgb(255, 255, 255);
+
+    /*background: linear-gradient(130deg, rgba(0, 123, 184, 0.219) 0%, rgba(235, 239, 245, 0.842) 20%, rgb(235, 239, 245, 0.842) 80%, rgba(0, 123, 184, 0.219) 100%);
+
+     border: 3px solid pink; */
+
+}
+
+
+
+.header-left a {
+
+    text-decoration: none;
+
+    color: #007CB8;
+
+    text-decoration: none;
+
+    padding: 18px;
+
+
+    border-radius: 5px;
+
+    font-weight: 750;
+
+}
+
+
+
+.header-left a:hover {
+
+    color: white;
+
+    background-color: #007CB8;
+}
+
+.divConteiner {
+    margin: auto;
+    border-radius: 35px;
+    height: 500px;
+    width: 70vw;
+    height: 80vh;
+    background-color: #e5e5e5;
+}
+
+.divConteiner .Conteiner .tituloPrincipal {
+    display: flex;
+    justify-content: center;
+    padding-top: 5%;
+    color: #007cb8;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+
+
+
+.dashboard {
+    background-color: white;
+    width: 75%;
+    position: relative;
+    left: 19.5%;
+    border-radius: 20px;
+    text-decoration: none;
+    padding: 25px;
+    padding-bottom: 25px;
+    height: 80vh
+}
+
+.alertas {
+    display: flex;
+    justify-content: space-around;
+    font-size: 20px;
+}
+
+.alertas div {
+    margin-top: 10px;
+}
+
+.alertas div div {
+    display: flex;
+    justify-content: center;
+    width: 250px;
+}
+
+.graficos {
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.grafico {
+    width: 45%;
+}
+
+
+.grafico h1 {
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+
+.medias {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.medias label {
+    font-size: 20px;
+}
+
+
+.cards {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: auto;
+}
+
+.card {
+    border: 1px solid #585858;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.cardHeader {
+    background-color: #e5e5e5;
+    text-align: center;
+    padding: 10px;
+    font-size: 10px;
+}
+
+.cardContent {
+    padding: 15px;
+    text-align: center;
+}
+
+.btn-fake {
+    background-color: #007CB8;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-left: 150px;
+    cursor: pointer;
+}
+
+.msg {
+    text-align: center;
+}
+
+.listaTanques {
+    margin-left: 15px;
+}
+
+.tanque {
+    border-radius: 20px;
+    border: 1px solid #007CB8;
+    margin-top: 15px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.tanque a {
+    color: white;
+    text-decoration: none;
+}
