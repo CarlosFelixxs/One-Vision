@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="assets/css/dashboard.css">
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
 </head>
 
 <body style="overflow: auto">
@@ -130,6 +131,11 @@
                         <h4>Consumo da RAM:</h4>
                         <h1><span id="usoRAM"></span></h1>
                         <h3><span id="avisoRAM"></span></h3>
+                    </div>
+                    <div class="kpisPrograma">
+                        <a href="painelProgramas.html" id="linkPrograma">
+                            <h2>Consultar programas presentes na maquina</h2>
+                        </a>
                     </div>
                     <div class="kpis" onclick="exibirCPU()">
                         <h4>Consumo da CPU:</h4>

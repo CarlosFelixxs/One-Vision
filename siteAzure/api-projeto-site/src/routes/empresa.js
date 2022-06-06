@@ -35,4 +35,20 @@ router.post("/atualizarEmpresa/:idEmpresa", function(req, res) {
     empresaController.atualizarEmpresa(req, res);
 });
 
+router.get("/listarProgramasProibidos/:idMaquina", function(req, res) {
+    empresaController.listarProgramasProibidos(req, res);
+});
+
+router.get("/listarProgramasPermitidos/:idMaquina", function(req, res) {
+    empresaController.listarProgramasPermitidos(req, res);
+});
+
+router.post("/autorizarPrograma/:idPrograma", function(req, res) {
+    empresaController.autorizarPrograma(req, res);
+});
+
+router.post("/bloquearPrograma/:idPrograma", function(req, res) {
+    empresaController.bloquearPrograma(req, res);
+});
+
 module.exports = router;

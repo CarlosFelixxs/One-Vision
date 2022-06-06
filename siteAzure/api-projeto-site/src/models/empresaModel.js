@@ -66,6 +66,44 @@ function atualizarEmpresa(idEmpresa, campoSelecionado, novoDado) {
     return database.executarMysql(instrucao);
 }
 
+function listarProgramasProibidos(idMaquina) {
+    console.log("ACESSEI A EMPRESA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function atualizarEmpresa()");
+    let instrucao = `
+        select nomePrograma, idPrograma from programa where fkMaquina = ${idMaquina} AND isProibido = 1  order by nomePrograma;
+    `;
+
+    return database.executarMysql(instrucao);
+}
+
+function listarProgramasPermitidos(idMaquina) {
+    console.log("ACESSEI A EMPRESA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function atualizarEmpresa()");
+    let instrucao = `
+        select nomePrograma, idPrograma from programa where fkMaquina = ${idMaquina} AND isProibido = 0  order by nomePrograma;
+    `;
+
+    return database.executarMysql(instrucao);
+}
+
+function autorizarPrograma(idPrograma) {
+    console.log("ACESSEI A EMPRESA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function atualizarEmpresa()");
+    let instrucao = `
+        update programa set isProibido = 0 where idPrograma = ${idPrograma};
+    `;
+
+    return database.executarMysql(instrucao);
+}
+
+function bloquearPrograma(idPrograma) {
+    console.log("ACESSEI A EMPRESA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function atualizarEmpresa()");
+    let instrucao = `
+        update programa set isProibido = 1 where idPrograma = ${idPrograma};
+    `;
+
+    return database.executarMysql(instrucao);
+}
+
+
+
 module.exports = {
     entrar,
     cadastrar,
@@ -74,4 +112,8 @@ module.exports = {
     deletarMaquina,
     deletarUsuario,
     atualizarEmpresa,
+    listarProgramasProibidos,
+    autorizarPrograma,
+    listarProgramasPermitidos,
+    bloquearPrograma,
 };

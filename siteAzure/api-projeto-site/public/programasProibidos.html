@@ -5,11 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Início – Gerenciamento</title>
+    <title>Início – Gerenciamento do Hardware</title>
     <link rel="stylesheet" href="assets/css/dashboard.css">
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
 </head>
 
 <body style="overflow: auto">
@@ -102,125 +103,85 @@
                 </li>
             </ul>
         </div>
+        
 
         <!-- main -->
-        <div class="main">
-            <div class="topbar">
-                <div class="toggle">
-                    <ion-icon name="menu-outline"></ion-icon>
+        <div class="main" id="mainTeste">
+            <div class="top">
+                <div class="topbar">
+                    <div class="toggle">
+                        <ion-icon name="menu-outline"></ion-icon>
+                    </div>
                 </div>
-            </div>
 
-            <!-- infos -->
-            <div class="infoBox">
-                <div class="info">
-                    <div>
-                        <div class="welcome">Bem-vindo(a) à área das maquinas!</div>
-                        <div class="infotext">Gerencie os computadores da empresa:</div>
+                <!-- infos -->
+                <div class="infoBox">
+                    <div class="info">
+                        <div>
+                            <div class="welcome">Bem-vindo(a) à área do Software!</div>
+                            <div class="infotext">Consulte os programas bloqueados da maquina:</div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- cards -->
-            <div class="cardBoxMaquina" id="listaMaquinas">
+
+            <div class="painelProgramas" id="painelProgramas">
 
             </div>
-
-        </div>
+        </div>    
+    </div>
 </body>
 
 </html>
+
 <script>
-    // menu toggle
-    let toggle = document.querySelector('.toggle');
+
+let toggle = document.querySelector('.toggle');
     let navigation = document.querySelector('.navigation');
     let main = document.querySelector('.main');
+
+    let listaProgramasInseridos = [];
 
     toggle.onclick = function () {
         navigation.classList.toggle('active');
         main.classList.toggle('active');
     }
-
-    function selecionarMaquina(idMaquina) {
-        sessionStorage.ID_MAQUINA = idMaquina;
-        window.location = "dashboardEmpresa.html";
-    }
-
-    fetch(`empresa/listarMaquinas/${sessionStorage.ID_EMPRESA}`)
+    
+    fetch(`empresa/listarProgramasProibidos/${sessionStorage.ID_MAQUINA}`)
         .then(res => res.json()).then(res =>{
-            for (let i = 0; i < res.length; i++){
-            const listaMaquinas = document.getElementById('listaMaquinas');
-            var divMaquina = document.createElement("div")
-            divMaquina.className = "cardMaquina";
-                divMaquina.innerHTML = `
-                    <div onclick="selecionarMaquina(${res[i].idMaquina})">
-                        <div class="iconBox">
-                            <ion-icon name="laptop-outline"></ion-icon>
-                        </div>
-                        <div>
-                            <div class="numbers">Maquina ${i+1}</div>
-                            <div>Funcionario: ${res[i].nomeUsuario}</div>
-                        </div>
-                    </div>
-                `
-                listaMaquinas.appendChild(divMaquina);
+            for (i = 0; i < res.length; i++){
+                if (listaProgramasInseridos.indexOf(res[i].nomePrograma) === -1) {
+
+                    const listaProgramas = document.getElementById('painelProgramas');
+                    var divPrograma = document.createElement("div")
+                    divPrograma.className = "cardPrograma";
+                        divPrograma.innerHTML = `
+                            <div>
+                                <div>
+                                    <div class="programaLista">${res[i].nomePrograma} <input type='checkbox' checked onchange='autorizarPrograma(${res[i].idPrograma})'></div>
+                                </div>
+                            </div>
+                        `
+                    listaProgramas.appendChild(divPrograma);
+
+                    listaProgramasInseridos.push(res[i].nomePrograma);
+                }
             }
         })
 
-    function abrirModalUpdate(){
-        document.getElementById("popupEmpresa").classList.add("active");
-        document.getElementById("blackEmpresa").classList.add("active-black-Empresa")
-    }
-
-    function fecharModalEmpresa(){
-        document.getElementById("popupEmpresa").classList.remove("active");
-        document.getElementById("blackEmpresa").classList.remove("active-black-Empresa");
-    }
-
-
-    function updateEmpresa() {
-
-        const formulario = new URLSearchParams(new FormData(document.getElementById("formUpdateEmpresa")));
-
-        const campoSelecionado = document.getElementById("campoSelect");
-        const novoDado = document.getElementById("novoValor");
-        let senha = document.getElementById('confirmaSenhaEmpresa').value;
-
-        if (campoSelecionado.value == "" || novoDado.value == "") {
-            window.alert('Preencha todos os campos');
-            return false;
-        }
-
-        if (senha == sessionStorage.SENHA_EMPRESA) {
-            senha.value = "";
-            
-        }else{
-            window.alert("Senha incorreta");
-            senha.value = "";
-            return false;
-        }
-
-        fetch(`/empresa/atualizarEmpresa/${sessionStorage.ID_EMPRESA}`, {
+    function autorizarPrograma(idPrograma){
+        
+        fetch(`/empresa/autorizarPrograma/${idPrograma}`, {
             method: "POST",
-            body: formulario
         }).then(function(resposta) {
-                if (resposta.ok) {
-
-                    window.alert('Empresa atualizada com sucesso');
-                    setTimeout(() => {
+            window.alert('O programa foi autorizado')
+            setTimeout(() => {
                         window.location.reload();
-                    }, 1000);
-
-                } else {
-                console.log(resposta);
-
-                throw("Houve um erro ao tentar realizar o cadastro!");
-            }
+                    }, 500);    
         }).catch(function(resposta) {
             console.log(`#ERRO: ${resposta}`);
         });
 
         return false;
     }
-
-        
 </script>

@@ -181,6 +181,78 @@ function atualizarEmpresa(req, res) {
         )
     }
 }
+
+function listarProgramasProibidos(req, res) {
+    let idMaquina = req.params.idMaquina;
+    empresaModel.listarProgramasProibidos(idMaquina)
+    .then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(
+        function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        }
+    );
+}
+
+function listarProgramasPermitidos(req, res) {
+    let idMaquina = req.params.idMaquina;
+    empresaModel.listarProgramasPermitidos(idMaquina)
+    .then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(
+        function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        }
+    );
+}
+
+function autorizarPrograma(req, res) {
+    let idPrograma = req.params.idPrograma;
+    empresaModel.autorizarPrograma(idPrograma)
+    .then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(
+        function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        }
+    );
+}
+
+function bloquearPrograma(req, res) {
+    let idPrograma = req.params.idPrograma;
+    empresaModel.bloquearPrograma(idPrograma)
+    .then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(
+        function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        }
+    );
+}
 module.exports = {
     entrar,
     cadastrar,
@@ -190,4 +262,8 @@ module.exports = {
     deletarMaquina,
     deletarUsuario,
     atualizarEmpresa,
+    listarProgramasProibidos,
+    listarProgramasPermitidos,
+    autorizarPrograma,
+    bloquearPrograma,
 }
